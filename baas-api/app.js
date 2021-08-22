@@ -41,16 +41,14 @@ app.post('/consents/:patient/:consentId/revoke', async (req, res) => {
 });
 
 app.post('/clinical-trials', async (req, res) => {
-    const ret = await consentConnect.createClinicalTrial(req.body);
-    res.send(ret);
+    res.send(await consentConnect.createClinicalTrial(req.body));
 });
 
 app.put('/clinical-trials/:clinicalTrialId', async (req, res) => {
-    const ret = await consentConnect.updateClinicalTrial({
+    res.send(await consentConnect.updateClinicalTrial({
         ...req.body,
         clinicalTrialId: req.params.clinicalTrialId,
-    });
-    res.send(ret);
+    }));
 });
 
 app.listen(port, () => {
