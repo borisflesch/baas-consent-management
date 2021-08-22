@@ -3,7 +3,7 @@ const contract = require('@truffle/contract');
 const consentmanagerArtifact = require('../build/contracts/ConsentsManager.json');
 const ConsentManager = contract(consentmanagerArtifact);
 
-const dataToClinicalTrialClauses = (data) => {
+const apiToBaasClinicalTrialData = (data) => {
   const _generalInformation = [
     data.researchers,
     data.hospital,
@@ -43,7 +43,43 @@ const dataToClinicalTrialClauses = (data) => {
   ];
 
   return [_generalInformation, _dataCollected, _dataProcessingAndPurposes, _dataClauses, _rareDiseaseClauses];
-}
+};
+
+const baasToApiClinicalTrialData = (data) => {
+  return {
+    researchers: data._generalInformation[0],
+    hospital: data._generalInformation[1],
+    funders: data._generalInformation[2],
+    naturesAndObjectives: data._generalInformation[3],
+    voluntarinessOfParticipation: data._generalInformation[4],
+    proceduresInvolved: data._generalInformation[5],
+    genomeWideSequencingTechniques: data._generalInformation[6],
+    potentialRisks: data._generalInformation[7],
+    potentialBenefits: data._generalInformation[8],
+    returnOfResults: data._generalInformation[9],
+    withdrawalProcedures: data._generalInformation[10],
+    compensationOrReimbursement: data._generalInformation[11],
+    prospectsForCommercialization: data._generalInformation[12],
+    studyDisseminationOrPublication: data._generalInformation[13],
+    recontact: data._generalInformation[14],
+    studyOversight: data._generalInformation[15],
+    dataCollected: data._dataCollected,
+    dataProcessingAndPurposes: data._dataProcessingAndPurposes,
+    dataStorageLocation: data._dataClauses[0],
+    dataStorageDuration: data._dataClauses[1],
+    dataAccessForResearch: data._dataClauses[2],
+    dataAccessForAuditing: data._dataClauses[3],
+    dataAccessAndSharing: data._dataClauses[4],
+    dataProtectionsInPlace: data._dataClauses[5],
+    openAccessDatabase: data._dataClauses[6],
+    isRareDisease: data._rareDiseaseClauses[0],
+    rareDiseaseIntroductoryClause: data._rareDiseaseClauses[1],
+    familialParticipation: data._rareDiseaseClauses[2],
+    audioVisualImaging: data._rareDiseaseClauses[3],
+    recontactForMatching: data._rareDiseaseClauses[4],
+    dataLinkage: data._rareDiseaseClauses[5],
+  }
+};
 
 module.exports = {
   start: function(callback) {
@@ -77,12 +113,14 @@ module.exports = {
           parentId: e[1],
           createdBy: e[2],
           createdAt: e[3],
-          generalInformation: e[4],
-          dataCollected: e[5],
-          dataProcessingAndPurposes: e[6],
-          dataClauses: e[7],
-          rareDiseaseClauses: e[8],
-        }
+          ...baasToApiClinicalTrialData({
+            _generalInformation: e[4],
+            _dataCollected: e[5],
+            _dataProcessingAndPurposes: e[6],
+            _dataClauses: e[7],
+            _rareDiseaseClauses: e[8],
+          }),
+        };
       });
     } catch (e) {
       console.log(e);
@@ -94,7 +132,7 @@ module.exports = {
     try {
       const instance = await ConsentManager.deployed();
       const res = await instance.createClinicalTrial(
-        ...dataToClinicalTrialClauses(data),
+        ...apiToBaasClinicalTrialData(data),
         { from: data.from });
       console.log(res);
       return res.valueOf();
@@ -109,7 +147,7 @@ module.exports = {
       const instance = await ConsentManager.deployed();
       const res = await instance.updateClinicalTrial(
         data.clinicalTrialId,
-        ...dataToClinicalTrialClauses(data),
+        ...apiToBaasClinicalTrialData(data),
         { from: data.from });
       console.log(res);
       return res.valueOf();
@@ -127,10 +165,10 @@ module.exports = {
       return res.valueOf().map(e => {
         return {
           id: e[0],
-          parentId: e[1], // 0: institution; 1: funders
+          parentId: e[1],
           clinicalTrialId: e[2],
           requestedBy: e[3],
-          patient: e[4], // 0: risks; 1: benefits
+          patient: e[4],
           status: e[5],
           statusChangedAt: e[6],
           statusChangedBy: e[7],
