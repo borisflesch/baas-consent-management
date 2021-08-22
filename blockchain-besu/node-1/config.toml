@@ -1,0 +1,11 @@
+genesis-file="../genesis.json"
+data-path="data"
+
+rpc-http-enabled=true
+rpc-http-api=["ETH","NET","IBFT"]
+host-allowlist=["*"]
+rpc-http-cors-origins=["all"]
+
+miner-enabled=true
+min-gas-price=0
+miner-coinbase="0xe8FAeA3207b2C31C6d238b25E35219Fbd318582a"

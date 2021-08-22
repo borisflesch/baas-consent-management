@@ -1,0 +1,16 @@
+genesis-file="../genesis.json"
+data-path="data"
+
+bootnodes=["enode://928385df356fde1776c8d5e2c671fbc55af933e3a41b0a6c983a80ebe3876fb845726746f784074d054a4dc55920b98379cc5e9a54ccc152e734daad7533d637@127.0.0.1:30303"]
+
+p2p-port=30306
+
+rpc-http-enabled=true
+rpc-http-api=["ETH","NET","IBFT"]
+host-allowlist=["*"]
+rpc-http-cors-origins=["all"]
+rpc-http-port=8548
+
+miner-enabled=true
+min-gas-price=0
+miner-coinbase="0xe8FAeA3207b2C31C6d238b25E35219Fbd318582a"
