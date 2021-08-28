@@ -53,22 +53,5 @@ app.put('/clinical-trials/:clinicalTrialId', async (req, res) => {
 
 app.listen(port, () => {
     console.log("Application listening at http://localhost:" + port);
-    
     consentConnect.web3 = new Web3(truffleConfig.networks.besu.provider);
-
-    // const txh = "0x405c45e340228cedf5ca456e90c34cfaf5a63a8cbbd0a66f4281e852d16f9cac";
-    // const txh = "0xf65fe9ff633b7b6bd85d26e4380ec8d7dec5579acc1f933462fb7de6f51433d5";
-    // consentConnect.web3.eth.getTransaction(txh, (error, result) => {
-    //     console.log(result);
-
-    //     const abiDecoder = require('abi-decoder');
-    //     abiDecoder.addABI(require('./build/contracts/ConsentsManager.json').abi);
-    //     console.log(abiDecoder.decodeMethod(result.input));
-    // });
-    
-    // consentConnect.web3.eth.subscribe('logs', {
-    //     address: "0xF216B6b2D9E76F94f97bE597e2Cec81730520585"
-    // }, (e) => {
-    //     console.log(e);
-    // })
 });

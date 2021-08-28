@@ -138,7 +138,7 @@ module.exports = {
       return res.valueOf();
     } catch (e) {
       console.log(e);
-      return "Error 404";
+      return "Error";
     }
   },
   updateClinicalTrial: async function(data) {
