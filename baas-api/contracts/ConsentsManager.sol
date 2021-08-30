@@ -154,6 +154,8 @@ contract ConsentsManager {
                 Consent storage consent = patientConsents.consents[j+1];
                 if (consent.clinicalTrialId == _clinicalTrialId) {
                     consent.status = ConsentStatus.EXPIRED;
+                    consent.statusChangedAt = block.timestamp;
+                    consent.statusChangedBy = address(this);
                     
                     // Request new consent
                     requestConsent(patients[i+1], clinicalTrialsCount, j+1,
