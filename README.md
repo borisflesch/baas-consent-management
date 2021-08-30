@@ -4,6 +4,7 @@
 
 - Node.js (tested on v16.5.0) — https://nodejs.org/
 - Hyperledger Besu — https://besu.hyperledger.org/en/stable/HowTo/Get-Started/Installation-Options/Install-Binaries/
+- Truffle — https://www.npmjs.com/package/truffle
 
 ## Quickstart
 
@@ -11,7 +12,8 @@
 2. Open four terminals in folders `blockchain-besu/node-{1,2,3,4}`
 3. Run the command `besu --config-file=config.toml` in each terminal to start the four nodes of the blockchain (which are pre-configured)
 4. Navigate to `baas-api`
-5. Run the following commands to install dependencies and start the server:
+5. Run the command `truffle migrate --network besu --reset` to compile and deploy the smart contract
+6. Run the following commands to install dependencies and start the server:
 ```
 npm install
 npm run start

@@ -1,0 +1,221 @@
+{
+	"info": {
+		"_postman_id": "018f8925-ac32-4550-9357-8d69b58b8c10",
+		"name": "Consent Management BaaS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Clinical Trials",
+			"item": [
+				{
+					"name": "Get Clinical Trials",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/clinical-trials",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"clinical-trials"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Clinical Trial",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"researchers\": \"\",\n    \"hospital\": \"\",\n    \"funders\": \"\",\n    \"naturesAndObjectives\": \"\",\n    \"voluntarinessOfParticipation\": \"\",\n    \"proceduresInvolved\": \"\",\n    \"genomeWideSequencingTechniques\": \"\",\n    \"potentialRisks\": \"\",\n    \"potentialBenefits\": \"\",\n    \"returnOfResults\": \"\",\n    \"withdrawalProcedures\": \"\",\n    \"compensationOrReimbursement\": \"\",\n    \"prospectsForCommercialization\": \"\",\n    \"studyDisseminationOrPublication\": \"\",\n    \"recontact\": \"\",\n    \"studyOversight\": \"\",\n    \"dataCollected\": [],\n    \"dataProcessingAndPurposes\": [],\n    \"dataStorageLocation\": \"\",\n    \"dataStorageDuration\": \"\",\n    \"dataAccessForResearch\": \"\",\n    \"dataAccessForAuditing\": \"\",\n    \"dataAccessAndSharing\": \"\",\n    \"dataProtectionsInPlace\": \"\",\n    \"openAccessDatabase\": \"\",\n    \"isRareDisease\": \"\",\n    \"rareDiseaseIntroductoryClause\": \"\",\n    \"familialParticipation\": \"\",\n    \"audioVisualImaging\": \"\",\n    \"recontactForMatching\": \"\",\n    \"dataLinkage\": \"\",\n    \"from\": \"0xfe3b557e8fb62b89f4916b721be55ceb828dbd73\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/clinical-trials",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"clinical-trials"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Clinical Trial",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"researchers\": \"updated\",\n    \"hospital\": \"\",\n    \"funders\": \"\",\n    \"naturesAndObjectives\": \"\",\n    \"voluntarinessOfParticipation\": \"\",\n    \"proceduresInvolved\": \"\",\n    \"genomeWideSequencingTechniques\": \"\",\n    \"potentialRisks\": \"\",\n    \"potentialBenefits\": \"\",\n    \"returnOfResults\": \"\",\n    \"withdrawalProcedures\": \"\",\n    \"compensationOrReimbursement\": \"\",\n    \"prospectsForCommercialization\": \"\",\n    \"studyDisseminationOrPublication\": \"\",\n    \"recontact\": \"\",\n    \"studyOversight\": \"\",\n    \"dataCollected\": [],\n    \"dataProcessingAndPurposes\": [],\n    \"dataStorageLocation\": \"\",\n    \"dataStorageDuration\": \"\",\n    \"dataAccessForResearch\": \"\",\n    \"dataAccessForAuditing\": \"\",\n    \"dataAccessAndSharing\": \"\",\n    \"dataProtectionsInPlace\": \"\",\n    \"openAccessDatabase\": \"\",\n    \"isRareDisease\": \"\",\n    \"rareDiseaseIntroductoryClause\": \"\",\n    \"familialParticipation\": \"\",\n    \"audioVisualImaging\": \"\",\n    \"recontactForMatching\": \"\",\n    \"dataLinkage\": \"\",\n    \"from\": \"0xfe3b557e8fb62b89f4916b721be55ceb828dbd73\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/clinical-trials/:clinicalTrialId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"clinical-trials",
+								":clinicalTrialId"
+							],
+							"variable": [
+								{
+									"key": "clinicalTrialId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Consents",
+			"item": [
+				{
+					"name": "Get Consents",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/consents/:from",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"consents",
+								":from"
+							],
+							"variable": [
+								{
+									"key": "from",
+									"value": "0xe8faea3207b2c31c6d238b25e35219fbd318582a"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Request Consent",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"patientAddr\": \"0xe8faea3207b2c31c6d238b25e35219fbd318582a\",\n    \"clinicalTrialId\": 1,\n    \"expiresAt\": 1629208887,\n    \"parentId\": 0,\n    \"additionalInformation\": [],\n    \"additionalArtifacts\": [],\n    \"from\": \"0xfe3b557e8fb62b89f4916b721be55ceb828dbd73\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/consents",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"consents"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Grant Consent (accept consent request)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/consents/:patient/:consentId/grant",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"consents",
+								":patient",
+								":consentId",
+								"grant"
+							],
+							"variable": [
+								{
+									"key": "patient",
+									"value": "0xe8faea3207b2c31c6d238b25e35219fbd318582a",
+									"description": "Patient address (public key)"
+								},
+								{
+									"key": "consentId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Revoke Consent",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/consents/:patient/:consentId/revoke",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"consents",
+								":patient",
+								":consentId",
+								"revoke"
+							],
+							"variable": [
+								{
+									"key": "patient",
+									"value": "0xe8faea3207b2c31c6d238b25e35219fbd318582a",
+									"description": "Patient address (public key)"
+								},
+								{
+									"key": "consentId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
